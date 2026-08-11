@@ -27,7 +27,7 @@ let package = Package(
         releasedDependency(named: "TimingEngine", exactVersion: "26.812.0"),
         .package(url: "https://github.com/1amageek/LogicDesignDatabaseIntegration.git", exact: "26.812.0"),
         .package(url: "https://github.com/1amageek/StandardCellLibraryDesignDatabaseIntegration.git", exact: "26.812.0"),
-        .package(url: "https://github.com/1amageek/ParasiticDesignDatabaseIntegration.git", exact: "26.812.0"),
+        .package(url: "https://github.com/1amageek/ParasiticDesignDatabaseIntegration.git", exact: "26.812.1"),
         .package(url: "https://github.com/1amageek/database-kit.git", exact: "26.0809.4"),
         .package(url: "https://github.com/1amageek/database-types.git", exact: "26.0730.0"),
         .package(
