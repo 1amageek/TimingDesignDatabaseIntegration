@@ -31,19 +31,18 @@ TimingCore + exact source facet bindings -> TimingDesignDatabaseSchema
 
 ## Contracts and Invariants
 
-Timing state remains bound to one exact base revision and source facet roots.
-The package adopts TimingEngine `fc21d6abe40e2888e595bcb58ed76f2733497e1d`
-so Xcircuite can compose manifest-bound STA with this integration. That revision
-leaves the consumed TimingCore source/API unchanged from `c009525`; STA request
-schema and process/corner admission belong to TimingEngine and are not copied
-into the database schema. No database API, state schema or source changes are
-part of this dependency adoption.
+Source bindings retain one exact base revision and exact facet roots.
+[Package.swift](Package.swift) is the authority for the exact dependency closure
+shared with Xcircuite. Adopted TimingEngine contracts include
+[TimingCore strict source characterization](../TimingEngine/Sources/TimingCore/DESIGN.md).
+Domain semantics remain owned by those dependencies; this package preserves its
+schema and runtime-adapter source bytes without asserting that transitive
+dependency source or behavior is unchanged.
 
 ## Verification and Change Impact
 
-The dependency adoption is checked by manifest decoding and an unchanged
-TimingCore source diff. Xcircuite's dedicated host build compiles both consumed
-products against the exact adopted revision, and focused native STA tests prove
-the composing host path. [TimingDatabaseSchemaTests](Tests/TimingDesignDatabaseIntegrationTests/TimingDatabaseSchemaTests.swift)
-owns schema canonical round-trip and invalid-state rejection; those unchanged
-behaviors are not reimplemented by this adoption.
+Manifest inspection checks every exact requirement before host resolution.
+Xcircuite compiles and exercises the consumed products against that closure.
+Existing schema/runtime behavioral tests own state admission and publication;
+dependency source-contract changes require the corresponding composing host
+verification and remain distinct from process qualification.
