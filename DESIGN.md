@@ -39,6 +39,13 @@ Domain semantics remain owned by those dependencies; this package preserves its
 schema and runtime-adapter source bytes without asserting that transitive
 dependency source or behavior is unchanged.
 
+TimingCore source inventory v2 is preserved canonically without reinterpreting
+D_NET declarations as loads or dropping complete CAP endpoints, owning nets,
+physical source identifiers, mirrored listings or same-net records. Reduction is
+owned by TimingCore; database encoding cannot manufacture approximation evidence.
+The nested v2 schema rejects legacy parasitic JSON. Sorting changes record order
+only, retaining all identifiers/values and exact parasitic facet binding.
+
 ## Verification and Change Impact
 
 Manifest inspection checks every exact requirement before host resolution.
@@ -46,3 +53,5 @@ Xcircuite compiles and exercises the consumed products against that closure.
 Existing schema/runtime behavioral tests own state admission and publication;
 dependency source-contract changes require the corresponding composing host
 verification and remain distinct from process qualification.
+
+TimingDatabaseState schema v2 rejects legacy v1 canonical state. Its canonicalization preserves CAP source IDs, endpoints, owners, values, D_NET declarations and resistance inventory without equipotential reduction.

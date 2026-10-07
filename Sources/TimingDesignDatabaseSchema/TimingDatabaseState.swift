@@ -5,7 +5,7 @@ import StandardCellLibraryDesignDatabaseSchema
 import TimingCore
 
 public struct TimingDatabaseState: Sendable, Hashable, Codable {
-    public static let currentSchemaVersion = 1
+    public static let currentSchemaVersion = 2
 
     public let schemaVersion: Int
     public let sourceLogic: LogicDatabaseExactFacetBinding
@@ -161,9 +161,10 @@ public struct TimingDatabaseState: Sendable, Hashable, Codable {
     private static func canonical(_ source: TimingParasitics) -> TimingParasitics {
         TimingParasitics(
             designName: source.designName,
-            networks: source.networks.sorted { $0.name < $1.name },
-            couplings: source.couplings.sorted {
-                ($0.firstNet, $0.secondNet) < ($1.firstNet, $1.secondNet)
+            networks: source.networks.sorted { $0.name < $1.name }.map { network in
+                .init(name: network.name, declaredCapacitance: network.declaredCapacitance,
+                      resistanceInventory: network.resistanceInventory,
+                      capacitances: network.capacitances.sorted { $0.source < $1.source })
             }
         )
     }

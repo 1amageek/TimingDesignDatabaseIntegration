@@ -1,6 +1,8 @@
 import CircuiteFoundation
 import DesignDatabaseCore
 import LogicDesignDatabaseSchema
+import ParasiticDesignDatabaseSchema
+import Foundation
 import StandardCellLibraryDesignDatabaseSchema
 import Testing
 import TimingCore
@@ -16,6 +18,28 @@ struct TimingDatabaseSchemaTests {
         #expect(try TimingDatabaseCanonicalCodec.decode(data) == state)
         #expect(state.design.ports.map(\.name) == ["clk", "out"])
         #expect(state.libraries.map(\.name) == ["fixture-library"])
+    }
+
+    @Test("canonical timing state preserves distributed CAP source inventory without reduction")
+    func distributedParasiticsRoundTrip() throws {
+        let fixture = try makeBindings()
+        let inventory = try SPEFParser().parse(Data("*D_NET out 10\n*CAP\n1 out:1 3\n2 out:1 out:2 7\n*RES\n1 out:1 out:2 100\n*END\n".utf8))
+        let binding = try ParasiticDatabaseFacetSourceBinding(
+            sourceRevision: fixture.logic.sourceRevision, sourceRootDigest: timingDigest("14"))
+        let state = try TimingDatabaseState(sourceLogic: fixture.logic, sourceLibrary: fixture.library,
+            sourceParasitics: binding, designArtifact: fixture.designArtifact,
+            constraintArtifact: fixture.constraintArtifact, design: fixture.design,
+            constraints: fixture.constraints, libraries: fixture.libraries, parasitics: inventory)
+        let decoded = try TimingDatabaseCanonicalCodec.decode(TimingDatabaseCanonicalCodec.encode(state))
+        #expect(decoded.parasitics == inventory)
+        #expect(decoded.parasitics?.networks.first?.capacitances.last?.second?.name == "out:2")
+        #expect(decoded.parasitics?.networks.first?.declaredCapacitance == 10)
+        #expect(decoded.parasitics?.networks.first?.resistanceInventory == 100)
+        var old = try #require(JSONSerialization.jsonObject(with: TimingDatabaseCanonicalCodec.encode(state)) as? [String: Any])
+        old["schemaVersion"] = 1
+        #expect(throws: TimingDatabaseSchemaError.self) {
+            _ = try TimingDatabaseCanonicalCodec.decode(JSONSerialization.data(withJSONObject: old))
+        }
     }
 
     @Test("invalid clocks are rejected before candidate preparation")
