@@ -24,10 +24,10 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/1amageek/CircuiteFoundation.git", revision: "ae88104c556f5802819713ed741f5b2fffffc2d9"),
         .package(url: "https://github.com/1amageek/DesignDatabase.git", revision: "11df4ff7d905d642b5935defb3bc1fbcfefda038"),
-        .package(url: "https://github.com/1amageek/TimingEngine.git", revision: "f645f1af8309061b760ff8596f7a1f73894967eb"),
+        .package(url: "https://github.com/1amageek/TimingEngine.git", revision: "f666d9b6bf334163d5f0b038078af7e76f500ef3"),
         .package(url: "https://github.com/1amageek/LogicDesignDatabaseIntegration.git", revision: "20077f5a8a11b026289e0e4b4588e7afcd883fa6"),
-        .package(url: "https://github.com/1amageek/StandardCellLibraryDesignDatabaseIntegration.git", revision: "8c788d2acbe67bced26aeb9585324ba309a1f676"),
-        .package(url: "https://github.com/1amageek/ParasiticDesignDatabaseIntegration.git", revision: "cdfe99597b9f5583894ba7bd770935857869d66c"),
+        .package(url: "https://github.com/1amageek/StandardCellLibraryDesignDatabaseIntegration.git", revision: "77b2d2fb6e406d2302674035456eee6ccabf0730"),
+        .package(url: "https://github.com/1amageek/ParasiticDesignDatabaseIntegration.git", revision: "d3d76baaa3f3621dbd78a740766043cb4e01df6c"),
         .package(url: "https://github.com/1amageek/database-kit.git", exact: "26.0809.4"),
         .package(url: "https://github.com/1amageek/database-types.git", exact: "26.0730.0"),
         .package(
