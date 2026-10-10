@@ -10,7 +10,7 @@ func releasedDependency(named name: String, exactVersion: Version) -> Package.De
 
 let package = Package(
     name: "TimingDesignDatabaseIntegration",
-    platforms: [.macOS(.v26)],
+    platforms: [.macOS("27.0")],
     products: [
         .library(
             name: "TimingDesignDatabaseSchema",
@@ -24,10 +24,10 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/1amageek/CircuiteFoundation.git", revision: "ae88104c556f5802819713ed741f5b2fffffc2d9"),
         .package(url: "https://github.com/1amageek/DesignDatabase.git", revision: "11df4ff7d905d642b5935defb3bc1fbcfefda038"),
-        .package(url: "https://github.com/1amageek/TimingEngine.git", revision: "b419a09995174289545132048451ac9d2acc372b"),
+        .package(url: "https://github.com/1amageek/TimingEngine.git", revision: "bcaaa735207fa77a0b76ad8105d59100612f6c0d"),
         .package(url: "https://github.com/1amageek/LogicDesignDatabaseIntegration.git", revision: "20077f5a8a11b026289e0e4b4588e7afcd883fa6"),
-        .package(url: "https://github.com/1amageek/StandardCellLibraryDesignDatabaseIntegration.git", revision: "15553545df8a2373a0c4199861d620d807c6a988"),
-        .package(url: "https://github.com/1amageek/ParasiticDesignDatabaseIntegration.git", revision: "1a6e840c79a88b2696e1eea3819475bc7ad675ca"),
+        .package(url: "https://github.com/1amageek/StandardCellLibraryDesignDatabaseIntegration.git", revision: "70a1f3473ee577e2f1479e7d4d33c1730f66c3c3"),
+        .package(url: "https://github.com/1amageek/ParasiticDesignDatabaseIntegration.git", revision: "5e8b7ce4f4b77d2416ad5d2a15292d1e481ccac0"),
         .package(url: "https://github.com/1amageek/database-kit.git", exact: "26.0809.4"),
         .package(url: "https://github.com/1amageek/database-types.git", exact: "26.0730.0"),
         .package(
